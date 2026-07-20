@@ -1,1 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма возврата</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            padding: 30px 20px;
+        }
 
+        .page {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .calculator {
+            flex: 1;
+            min-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: transparent;
+        }
+
+        .calculator-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #f5f5f5;
+            font-weight: bold;
+        }
+
+        .input-cell input {
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            background: #fff7cc;
+            padding: 6px;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .result-cell {
+            background: #e0e0e0;
+            font-weight: bold;
+        }
+
+        .blue-cell {
+            background: #cfe2ff;
+            font-weight: bold;
+        }
+
+        .section-label {
+            text-align: left;
+            font-weight: bold;
+            padding-left: 10px;
+        }
+
+        .clear-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #999;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .clear-btn:hover {
+            background-color: #777;
+        }
+
+        .nav {
+            margin-bottom: 20px;
+        }
+
+        .nav a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 1100px) {
+            .calculator {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="nav">
+            <a href="index.html">← Вернуться к основному калькулятору</a>
+        </div>
+
+        <div class="title">Калькулятор формы возврата</div>
+
+        <div class="container">
+            <!-- Левый блок -->
+            <div class="calculator">
+                <h2 class="calculator-title">Детализация оффера</h2>
+                <div class="divider"></div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Пассажир</th>
+                            <th>Тариф</th>
+                            <th>Таксы</th>
+                            <th>СС</th>
+                            <th>Итого</th>
+                        </tr>
+                    </thead>
+                    <tbody id="offer-body">
+                        <!-- 9 пассажиров -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="section-label"><strong>Итого номинал</strong></td>
+                            <td class="result-cell" id="totalFare">0.00</td>
+                            <td class="result-cell" id="totalTax">0.00</td>
+                            <td class="result-cell" id="totalCC">0.00</td>
+                            <td class="result-cell" id="totalAll">0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <button class="clear-btn" onclick="clearForm()">Сбросить расчет</button>
+            </div>
+
+            <!-- Правый блок -->
+            <div class="calculator">
+                <h2 class="calculator-title">Форма возврата</h2>
+                <div class="divider"></div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Тариф</th>
+                            <th>Таксы</th>
+                            <th>СС</th>
+                            <th>Итого</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="section-label">Оплачено деньгами (по всем)</td>
+                            <td class="input-cell">
+                                <input type="number" id="paidFare" value="0" oninput="calculateRefunds()">
+                            </td>
+                            <td class="input-cell">
+                                <input type="number" id="paidTax" value="0" oninput="calculateRefunds()">
+                            </td>
+                            <td class="input-cell">
+                                <input type="number" id="paidCC" value="0" oninput="calculateRefunds()">
+                            </td>
+                            <td class="result-cell" id="paidTotal">0.00</td>
+                        </tr>
+
+                        <tr>
+                            <td class="section-label"><strong>К ВОЗВРАТУ: Полный возврат</strong></td>
+                            <td class="blue-cell" id="fullFare">0.00</td>
+                            <td class="blue-cell" id="fullTax">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="fullTotal">0.00</td>
+                        </tr>
+
+                        <tr>
+                            <td class="section-label">Частичный возврат - пасс 1</td>
+                            <td class="blue-cell" id="partFare1">0.00</td>
+                            <td class="blue-cell" id="partTax1">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="partTotal1">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Частичный возврат - пасс 2</td>
+                            <td class="blue-cell" id="partFare2">0.00</td>
+                            <td class="blue-cell" id="partTax2">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="partTotal2">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Частичный возврат - пасс 3</td>
+                            <td class="blue-cell" id="partFare3">0.00</td>
+                            <td class="blue-cell" id="partTax3">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="partTotal3">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Частичный возврат - пасс 4</td>
+                            <td class="blue-cell" id="partFare4">0.00</td>
+                            <td class="blue-cell" id="partTax4">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="partTotal4">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Частичный возврат - пасс 5</td>
+                            <td class="blue-cell" id="partFare5">0.00</td>
+                            <td class="blue-cell" id="partTax5">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="partTotal5">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Частичный возврат - пасс 6</td>
+                            <td class="blue-cell" id="partFare6">0.00</td>
+                            <td class="blue-cell" id="partTax6">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="partTotal6">0.00</
