@@ -17,12 +17,6 @@
             margin: 0 auto;
         }
 
-        .title {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
         .container {
             display: flex;
             gap: 30px;
@@ -111,20 +105,6 @@
             background-color: #777;
         }
 
-        .nav {
-            margin-bottom: 20px;
-        }
-
-        .nav a {
-            color: #0066cc;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .nav a:hover {
-            text-decoration: underline;
-        }
-
         @media (max-width: 1100px) {
             .calculator {
                 min-width: 100%;
@@ -134,12 +114,6 @@
 </head>
 <body>
     <div class="page">
-        <div class="nav">
-            <a href="index.html">← Вернуться к основному калькулятору</a>
-        </div>
-
-        <div class="title">Калькулятор формы возврата</div>
-
         <div class="container">
             <!-- Левый блок -->
             <div class="calculator">
@@ -156,8 +130,70 @@
                             <th>Итого</th>
                         </tr>
                     </thead>
-                    <tbody id="offer-body">
-                        <!-- 9 пассажиров -->
+                    <tbody>
+                        <tr>
+                            <td class="section-label">Пассажир 1</td>
+                            <td class="input-cell"><input type="number" id="fare1" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="tax1" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="cc1" value="0" oninput="calculateRefunds()"></td>
+                            <td class="result-cell" id="rowTotal1">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Пассажир 2</td>
+                            <td class="input-cell"><input type="number" id="fare2" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="tax2" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="cc2" value="0" oninput="calculateRefunds()"></td>
+                            <td class="result-cell" id="rowTotal2">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Пассажир 3</td>
+                            <td class="input-cell"><input type="number" id="fare3" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="tax3" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="cc3" value="0" oninput="calculateRefunds()"></td>
+                            <td class="result-cell" id="rowTotal3">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Пассажир 4</td>
+                            <td class="input-cell"><input type="number" id="fare4" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="tax4" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="cc4" value="0" oninput="calculateRefunds()"></td>
+                            <td class="result-cell" id="rowTotal4">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Пассажир 5</td>
+                            <td class="input-cell"><input type="number" id="fare5" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="tax5" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="cc5" value="0" oninput="calculateRefunds()"></td>
+                            <td class="result-cell" id="rowTotal5">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Пассажир 6</td>
+                            <td class="input-cell"><input type="number" id="fare6" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="tax6" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="cc6" value="0" oninput="calculateRefunds()"></td>
+                            <td class="result-cell" id="rowTotal6">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Пассажир 7</td>
+                            <td class="input-cell"><input type="number" id="fare7" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="tax7" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="cc7" value="0" oninput="calculateRefunds()"></td>
+                            <td class="result-cell" id="rowTotal7">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Пассажир 8</td>
+                            <td class="input-cell"><input type="number" id="fare8" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="tax8" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="cc8" value="0" oninput="calculateRefunds()"></td>
+                            <td class="result-cell" id="rowTotal8">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Пассажир 9</td>
+                            <td class="input-cell"><input type="number" id="fare9" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="tax9" value="0" oninput="calculateRefunds()"></td>
+                            <td class="input-cell"><input type="number" id="cc9" value="0" oninput="calculateRefunds()"></td>
+                            <td class="result-cell" id="rowTotal9">0.00</td>
+                        </tr>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -204,7 +240,7 @@
                         </tr>
 
                         <tr>
-                            <td class="section-label"><strong>К ВОЗВРАТУ: Полный возврат</strong></td>
+                            <td class="section-label"><strong>Полный возврат</strong></td>
                             <td class="blue-cell" id="fullFare">0.00</td>
                             <td class="blue-cell" id="fullTax">0.00</td>
                             <td class="blue-cell">-</td>
@@ -212,43 +248,157 @@
                         </tr>
 
                         <tr>
-                            <td class="section-label">Частичный возврат - пасс 1</td>
+                            <td class="section-label">Частичный возврат - пассажир 1</td>
                             <td class="blue-cell" id="partFare1">0.00</td>
                             <td class="blue-cell" id="partTax1">0.00</td>
                             <td class="blue-cell">-</td>
                             <td class="blue-cell" id="partTotal1">0.00</td>
                         </tr>
                         <tr>
-                            <td class="section-label">Частичный возврат - пасс 2</td>
+                            <td class="section-label">Частичный возврат - пассажир 2</td>
                             <td class="blue-cell" id="partFare2">0.00</td>
                             <td class="blue-cell" id="partTax2">0.00</td>
                             <td class="blue-cell">-</td>
                             <td class="blue-cell" id="partTotal2">0.00</td>
                         </tr>
                         <tr>
-                            <td class="section-label">Частичный возврат - пасс 3</td>
+                            <td class="section-label">Частичный возврат - пассажир 3</td>
                             <td class="blue-cell" id="partFare3">0.00</td>
                             <td class="blue-cell" id="partTax3">0.00</td>
                             <td class="blue-cell">-</td>
                             <td class="blue-cell" id="partTotal3">0.00</td>
                         </tr>
                         <tr>
-                            <td class="section-label">Частичный возврат - пасс 4</td>
+                            <td class="section-label">Частичный возврат - пассажир 4</td>
                             <td class="blue-cell" id="partFare4">0.00</td>
                             <td class="blue-cell" id="partTax4">0.00</td>
                             <td class="blue-cell">-</td>
                             <td class="blue-cell" id="partTotal4">0.00</td>
                         </tr>
                         <tr>
-                            <td class="section-label">Частичный возврат - пасс 5</td>
+                            <td class="section-label">Частичный возврат - пассажир 5</td>
                             <td class="blue-cell" id="partFare5">0.00</td>
                             <td class="blue-cell" id="partTax5">0.00</td>
                             <td class="blue-cell">-</td>
                             <td class="blue-cell" id="partTotal5">0.00</td>
                         </tr>
                         <tr>
-                            <td class="section-label">Частичный возврат - пасс 6</td>
+                            <td class="section-label">Частичный возврат - пассажир 6</td>
                             <td class="blue-cell" id="partFare6">0.00</td>
                             <td class="blue-cell" id="partTax6">0.00</td>
                             <td class="blue-cell">-</td>
-                            <td class="blue-cell" id="partTotal6">0.00</
+                            <td class="blue-cell" id="partTotal6">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Частичный возврат - пассажир 7</td>
+                            <td class="blue-cell" id="partFare7">0.00</td>
+                            <td class="blue-cell" id="partTax7">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="partTotal7">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Частичный возврат - пассажир 8</td>
+                            <td class="blue-cell" id="partFare8">0.00</td>
+                            <td class="blue-cell" id="partTax8">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="partTotal8">0.00</td>
+                        </tr>
+                        <tr>
+                            <td class="section-label">Частичный возврат - пассажир 9</td>
+                            <td class="blue-cell" id="partFare9">0.00</td>
+                            <td class="blue-cell" id="partTax9">0.00</td>
+                            <td class="blue-cell">-</td>
+                            <td class="blue-cell" id="partTotal9">0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const passengerCount = 9;
+
+        function calculateRefunds() {
+            let totalFare = 0;
+            let totalTax = 0;
+            let totalCC = 0;
+
+            for (let i = 1; i <= passengerCount; i++) {
+                const fare = parseFloat(document.getElementById(`fare${i}`).value) || 0;
+                const tax = parseFloat(document.getElementById(`tax${i}`).value) || 0;
+                const cc = parseFloat(document.getElementById(`cc${i}`).value) || 0;
+
+                const rowTotal = fare + tax + cc;
+
+                document.getElementById(`rowTotal${i}`).textContent = rowTotal.toFixed(2);
+
+                totalFare += fare;
+                totalTax += tax;
+                totalCC += cc;
+            }
+
+            const totalAll = totalFare + totalTax + totalCC;
+
+            document.getElementById('totalFare').textContent = totalFare.toFixed(2);
+            document.getElementById('totalTax').textContent = totalTax.toFixed(2);
+            document.getElementById('totalCC').textContent = totalCC.toFixed(2);
+            document.getElementById('totalAll').textContent = totalAll.toFixed(2);
+
+            const paidFare = parseFloat(document.getElementById('paidFare').value) || 0;
+            const paidTax = parseFloat(document.getElementById('paidTax').value) || 0;
+            const paidCC = parseFloat(document.getElementById('paidCC').value) || 0;
+            const paidTotal = paidFare + paidTax + paidCC;
+
+            document.getElementById('paidTotal').textContent = paidTotal.toFixed(2);
+
+            document.getElementById('fullFare').textContent = paidFare.toFixed(2);
+            document.getElementById('fullTax').textContent = paidTax.toFixed(2);
+            document.getElementById('fullTotal').textContent = (paidFare + paidTax).toFixed(2);
+
+            for (let i = 1; i <= passengerCount; i++) {
+                const fare = parseFloat(document.getElementById(`fare${i}`).value) || 0;
+                const tax = parseFloat(document.getElementById(`tax${i}`).value) || 0;
+
+                const partFare = totalFare !== 0 ? (paidFare / totalFare) * fare : 0;
+                const partTax = totalTax !== 0 ? (paidTax / totalTax) * tax : 0;
+                const partTotal = partFare + partTax;
+
+                document.getElementById(`partFare${i}`).textContent = partFare.toFixed(2);
+                document.getElementById(`partTax${i}`).textContent = partTax.toFixed(2);
+                document.getElementById(`partTotal${i}`).textContent = partTotal.toFixed(2);
+            }
+        }
+
+        function clearForm() {
+            for (let i = 1; i <= passengerCount; i++) {
+                document.getElementById(`fare${i}`).value = 0;
+                document.getElementById(`tax${i}`).value = 0;
+                document.getElementById(`cc${i}`).value = 0;
+                document.getElementById(`rowTotal${i}`).textContent = '0.00';
+            }
+
+            document.getElementById('paidFare').value = 0;
+            document.getElementById('paidTax').value = 0;
+            document.getElementById('paidCC').value = 0;
+
+            document.getElementById('totalFare').textContent = '0.00';
+            document.getElementById('totalTax').textContent = '0.00';
+            document.getElementById('totalCC').textContent = '0.00';
+            document.getElementById('totalAll').textContent = '0.00';
+            document.getElementById('paidTotal').textContent = '0.00';
+            document.getElementById('fullFare').textContent = '0.00';
+            document.getElementById('fullTax').textContent = '0.00';
+            document.getElementById('fullTotal').textContent = '0.00';
+
+            for (let i = 1; i <= passengerCount; i++) {
+                document.getElementById(`partFare${i}`).textContent = '0.00';
+                document.getElementById(`partTax${i}`).textContent = '0.00';
+                document.getElementById(`partTotal${i}`).textContent = '0.00';
+            }
+        }
+
+        calculateRefunds();
+    </script>
+</body>
+</html>
